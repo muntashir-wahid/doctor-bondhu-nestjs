@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ClinicServicesService } from './providers/clinic-services.service';
 import { CreateClinicServiceDto } from './dtos/create-clinic-service.dto';
 
@@ -9,5 +9,10 @@ export class ClinicServicesController {
   @Post()
   create(@Body() createClinicServiceDto: CreateClinicServiceDto) {
     return this.clinicServicesService.createOne(createClinicServiceDto);
+  }
+
+  @Get()
+  findAll(@Query('page') page: number, @Query('limit') limit: number) {
+    return this.clinicServicesService.findAll(page, limit);
   }
 }

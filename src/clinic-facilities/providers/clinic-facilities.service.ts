@@ -4,6 +4,7 @@ import { In, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateClinicFacilityDto } from '../dtos/create-clinic-facility.dto';
 import { CatchAndThrowAsyncErrors } from 'src/utils/providers/catch-and-throw-async-errors';
+import { PaginatedList } from 'src/utils/providers/paginated-list.provider';
 
 @Injectable()
 export class ClinicFacilitiesService {
@@ -11,6 +12,7 @@ export class ClinicFacilitiesService {
     @InjectRepository(ClinicFacilities)
     private readonly facilities: Repository<ClinicFacilities>,
     private readonly catchAndThrowAsyncErrors: CatchAndThrowAsyncErrors,
+    private readonly paginatedList: PaginatedList<ClinicFacilities>,
   ) {}
 
   async createOne(createClinicFacilityDto: CreateClinicFacilityDto) {
@@ -32,5 +34,14 @@ export class ClinicFacilitiesService {
     });
 
     return facilities;
+  }
+
+  async findAll(page = 1, limit = 10) {
+    const [items, total] = await this.facilities.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return this.paginatedList.create(items, total, page, limit, 'facilities');
   }
 }
