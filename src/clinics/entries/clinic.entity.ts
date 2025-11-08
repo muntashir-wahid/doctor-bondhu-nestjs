@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserStatus } from 'src/users/enums/user-status.enum';
+import { Status } from 'src/users/enums/user.enum';
 
 @Entity('clinics')
 export class Clinic {
@@ -19,13 +19,6 @@ export class Clinic {
     unique: true,
   })
   name: string;
-
-  @Column({
-    type: 'varchar',
-    length: 500,
-    nullable: false,
-  })
-  address: string;
 
   @Column({
     type: 'varchar',
@@ -51,10 +44,10 @@ export class Clinic {
 
   @Column({
     type: 'enum',
-    enum: UserStatus,
-    default: UserStatus.PENDING,
+    enum: Status,
+    default: Status.PENDING,
   })
-  status: UserStatus;
+  status: Status;
 
   @CreateDateColumn()
   createdAt: Date;

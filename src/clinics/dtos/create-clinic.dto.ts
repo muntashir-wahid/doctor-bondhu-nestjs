@@ -8,7 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserStatus } from 'src/users/enums/user-status.enum';
+import { Status } from 'src/users/enums/user.enum';
 
 export class CreateClinicDto {
   @ApiProperty({
@@ -24,24 +24,11 @@ export class CreateClinicDto {
   name: string;
 
   @ApiProperty({
-    description: 'Physical address of the clinic',
-    example: '123 Main Street, Downtown, City 12345',
-    minLength: 10,
-    maxLength: 500,
-  })
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(10)
-  @MaxLength(500)
-  address: string;
-
-  @ApiProperty({
     description: 'Email address of the clinic',
     example: 'contact@citygeneralhospital.com',
     format: 'email',
     required: false,
   })
-  @IsString()
   @IsOptional()
   @IsEmail()
   email?: string;
@@ -74,10 +61,10 @@ export class CreateClinicDto {
 
   @ApiProperty({
     description: 'Current status of the clinic',
-    enum: UserStatus,
-    default: UserStatus.PENDING,
-    example: UserStatus.PENDING,
+    enum: Status,
+    default: Status.PENDING,
+    example: Status.PENDING,
   })
-  @IsEnum(UserStatus)
-  status: UserStatus = UserStatus.PENDING;
+  @IsEnum(Status)
+  status: Status = Status.PENDING;
 }

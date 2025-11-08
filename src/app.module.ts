@@ -5,6 +5,8 @@ import { UsersModule } from './users/users.module';
 import { ClinicsModule } from './clinics/clinics.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ClinicServicesModule } from './clinic-services/clinic-services.module';
+import { ClinicFacilitiesModule } from './clinic-facilities/clinic-facilities.module';
 
 @Module({
   imports: [
@@ -27,6 +29,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         database: configService.get<string>('DATABASE_NAME'),
       }),
     }),
+
+    ClinicServicesModule,
+
+    ClinicFacilitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

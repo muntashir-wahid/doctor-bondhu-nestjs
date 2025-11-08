@@ -1,5 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { UserRole } from './enums/user-role.enum';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { UserDepartment } from './enums/user-department.enum';
 
 @Entity()
 export class User {
@@ -30,8 +35,11 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: UserRole,
-    default: UserRole.USER,
+    enum: UserDepartment,
+    default: UserDepartment.CLINIC,
   })
-  role: UserRole = UserRole.USER;
+  department: UserDepartment = UserDepartment.CLINIC;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
