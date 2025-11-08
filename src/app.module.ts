@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClinicServicesModule } from './clinic-services/clinic-services.module';
 import { ClinicFacilitiesModule } from './clinic-facilities/clinic-facilities.module';
+import { UtilsModule } from './utils/utils.module';
 
 @Module({
   imports: [
@@ -33,6 +34,8 @@ import { ClinicFacilitiesModule } from './clinic-facilities/clinic-facilities.mo
     ClinicServicesModule,
 
     ClinicFacilitiesModule,
+
+    UtilsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,27 +1,25 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ClinicFacilities } from '../clinic-facilities.entry';
 import { In, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateClinicFacilityDto } from '../dtos/create-clinic-facility.dto';
+import { CatchAndThrowAsyncErrors } from 'src/utils/providers/catch-and-throw-async-errors';
 
 @Injectable()
 export class ClinicFacilitiesService {
   constructor(
     @InjectRepository(ClinicFacilities)
     private readonly facilities: Repository<ClinicFacilities>,
+    private readonly catchAndThrowAsyncErrors: CatchAndThrowAsyncErrors,
   ) {}
 
   async createOne(createClinicFacilityDto: CreateClinicFacilityDto) {
-    const isExisting = await this.facilities.findOneBy({
-      name: createClinicFacilityDto.name,
-    });
-
-    if (isExisting) {
-      throw new BadRequestException('Clinic facility already exists');
+    try {
+      const clinicFacility = this.facilities.create(createClinicFacilityDto);
+      return await this.facilities.save(clinicFacility);
+    } catch (error) {
+      this.catchAndThrowAsyncErrors.execute(error as Error);
     }
-
-    const clinicFacility = this.facilities.create(createClinicFacilityDto);
-    return await this.facilities.save(clinicFacility);
   }
 
   async findManyByIds(ids?: number[]): Promise<ClinicFacilities[]> {
