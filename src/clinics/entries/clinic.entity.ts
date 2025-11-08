@@ -4,8 +4,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Status } from 'src/users/enums/user.enum';
+import { ClinicFacilities } from 'src/clinic-facilities/clinic-facilities.entry';
 
 @Entity('clinics')
 export class Clinic {
@@ -54,4 +57,8 @@ export class Clinic {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @ManyToMany(() => ClinicFacilities, { onDelete: 'CASCADE' })
+  @JoinTable({})
+  facilities: ClinicFacilities[];
 }

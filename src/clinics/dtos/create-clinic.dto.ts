@@ -1,10 +1,14 @@
 import {
+  ArrayMaxSize,
+  IsArray,
   IsEmail,
   IsEnum,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
+  Min,
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
@@ -67,4 +71,17 @@ export class CreateClinicDto {
   })
   @IsEnum(Status)
   status: Status = Status.PENDING;
+
+  @ApiProperty({
+    description: 'Array of facility IDs associated with the clinic',
+    type: [Number],
+    minimum: 1,
+    minLength: 30,
+  })
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @Min(1, { each: true })
+  @ArrayMaxSize(30)
+  @IsOptional()
+  facilities?: number[];
 }
