@@ -84,4 +84,17 @@ export class CreateClinicDto {
   @ArrayMaxSize(30)
   @IsOptional()
   facilities?: number[];
+
+  @ApiProperty({
+    description: 'Array of service IDs associated with the clinic',
+    type: [Number],
+    minimum: 1,
+    minLength: 30,
+  })
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @Min(1, { each: true })
+  @ArrayMaxSize(30)
+  @IsOptional()
+  services?: number[];
 }

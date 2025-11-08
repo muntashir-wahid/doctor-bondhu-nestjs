@@ -8,5 +8,6 @@ import { ClinicFacilities } from './clinic-facilities.entry';
   controllers: [ClinicFacilitiesController],
   providers: [ClinicFacilitiesService],
   imports: [TypeOrmModule.forFeature([ClinicFacilities])],
+  exports: [ClinicFacilitiesService],
 })
 export class ClinicFacilitiesModule {}

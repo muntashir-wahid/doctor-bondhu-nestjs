@@ -7,7 +7,7 @@ export class ClinicsController {
   constructor(private readonly clinicsService: ClinicsService) {}
 
   @Post()
-  createClinic(@Body() createClinicDto: CreateClinicDto) {
-    return this.clinicsService.createClinic(createClinicDto);
+  create(@Body() createClinicDto: CreateClinicDto) {
+    return this.clinicsService.createOne(createClinicDto);
   }
 }

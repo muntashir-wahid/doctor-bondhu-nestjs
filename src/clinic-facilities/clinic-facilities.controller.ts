@@ -10,8 +10,6 @@ export class ClinicFacilitiesController {
 
   @Post()
   create(@Body() createClinicFacilityDto: CreateClinicFacilityDto) {
-    return this.clinicFacilitiesService.createClinicFacility(
-      createClinicFacilityDto,
-    );
+    return this.clinicFacilitiesService.createOne(createClinicFacilityDto);
   }
 }

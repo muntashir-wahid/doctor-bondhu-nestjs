@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ClinicService } from '../clinic-service.entry';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateClinicServiceDto } from '../dtos/create-clinic-service.dto';
 
 @Injectable()
@@ -22,5 +22,17 @@ export class ClinicServicesService {
 
     const clinicService = this.clinicService.create(createClinicServiceDto);
     return await this.clinicService.save(clinicService);
+  }
+
+  async findManyByIds(ids?: number[]): Promise<ClinicService[]> {
+    if (!ids) {
+      return [];
+    }
+
+    const services = await this.clinicService.findBy({
+      id: In(ids),
+    });
+
+    return services;
   }
 }

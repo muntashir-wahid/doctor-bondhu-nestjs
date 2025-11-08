@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ClinicFacilities } from '../clinic-facilities.entry';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateClinicFacilityDto } from '../dtos/create-clinic-facility.dto';
 
@@ -8,11 +8,11 @@ import { CreateClinicFacilityDto } from '../dtos/create-clinic-facility.dto';
 export class ClinicFacilitiesService {
   constructor(
     @InjectRepository(ClinicFacilities)
-    private readonly clinic: Repository<ClinicFacilities>,
+    private readonly facilities: Repository<ClinicFacilities>,
   ) {}
 
-  async createClinicFacility(createClinicFacilityDto: CreateClinicFacilityDto) {
-    const isExisting = await this.clinic.findOneBy({
+  async createOne(createClinicFacilityDto: CreateClinicFacilityDto) {
+    const isExisting = await this.facilities.findOneBy({
       name: createClinicFacilityDto.name,
     });
 
@@ -20,7 +20,19 @@ export class ClinicFacilitiesService {
       throw new BadRequestException('Clinic facility already exists');
     }
 
-    const clinicFacility = this.clinic.create(createClinicFacilityDto);
-    return await this.clinic.save(clinicFacility);
+    const clinicFacility = this.facilities.create(createClinicFacilityDto);
+    return await this.facilities.save(clinicFacility);
+  }
+
+  async findManyByIds(ids?: number[]): Promise<ClinicFacilities[]> {
+    if (!ids) {
+      return [];
+    }
+
+    const facilities = await this.facilities.findBy({
+      id: In(ids),
+    });
+
+    return facilities;
   }
 }

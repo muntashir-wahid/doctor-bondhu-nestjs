@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Status } from 'src/users/enums/user.enum';
 import { ClinicFacilities } from 'src/clinic-facilities/clinic-facilities.entry';
+import { ClinicService } from 'src/clinic-services/clinic-service.entry';
 
 @Entity('clinics')
 export class Clinic {
@@ -60,5 +61,9 @@ export class Clinic {
 
   @ManyToMany(() => ClinicFacilities, { onDelete: 'CASCADE' })
   @JoinTable({})
-  facilities: ClinicFacilities[];
+  facilities?: ClinicFacilities[];
+
+  @ManyToMany(() => ClinicService, { onDelete: 'CASCADE' })
+  @JoinTable({})
+  services?: ClinicService[];
 }
