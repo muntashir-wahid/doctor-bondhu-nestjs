@@ -1,11 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user.entity';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from '../dtos/create-user.dtos';
 import { HashingProvider } from './hashing.provider';
 import { CreateSuperUserDto } from '../dtos/create-super-user.dto';
-import { UserClinicRole } from '../enums/user-clinic-role.enum';
 import { UserDepartment } from '../enums/user-department.enum';
 import { CatchAndThrowAsyncErrors } from 'src/utils/providers/catch-and-throw-async-errors';
 
