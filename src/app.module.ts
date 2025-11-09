@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClinicServicesModule } from './clinic-services/clinic-services.module';
 import { ClinicFacilitiesModule } from './clinic-facilities/clinic-facilities.module';
 import { UtilsModule } from './utils/utils.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -36,6 +37,8 @@ import { UtilsModule } from './utils/utils.module';
     ClinicFacilitiesModule,
 
     UtilsModule,
+
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
