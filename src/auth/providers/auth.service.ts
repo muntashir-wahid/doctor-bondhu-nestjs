@@ -42,6 +42,6 @@ export class AuthService {
       department: user.department,
     });
 
-    return { message: 'Login successful', data: { token } };
+    return { message: 'Login successful', data: { accessToken: token } };
   }
 }

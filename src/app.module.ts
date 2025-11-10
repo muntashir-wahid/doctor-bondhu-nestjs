@@ -9,6 +9,7 @@ import { ClinicServicesModule } from './clinic-services/clinic-services.module';
 import { ClinicFacilitiesModule } from './clinic-facilities/clinic-facilities.module';
 import { UtilsModule } from './utils/utils.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthGuard } from './auth/guard/auth.guard';
 
 @Module({
   imports: [
@@ -31,16 +32,12 @@ import { AuthModule } from './auth/auth.module';
         database: configService.get<string>('DATABASE_NAME'),
       }),
     }),
-
     ClinicServicesModule,
-
     ClinicFacilitiesModule,
-
     UtilsModule,
-
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: 'APP_GUARD', useClass: AuthGuard }],
 })
 export class AppModule {}
