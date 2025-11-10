@@ -30,6 +30,7 @@ export class User {
     type: 'varchar',
     length: 100,
     nullable: true,
+    select: false,
   })
   password?: string;
 

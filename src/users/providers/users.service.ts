@@ -35,4 +35,18 @@ export class UsersService {
       this.catchAndThrowAsyncError.execute(error);
     }
   }
+
+  public async findByEmail(email: string) {
+    return this.user.findOne({
+      where: { email },
+      select: [
+        'id',
+        'fullName',
+        'email',
+        'password',
+        'department',
+        'createdAt',
+      ],
+    });
+  }
 }
