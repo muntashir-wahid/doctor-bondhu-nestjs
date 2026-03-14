@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { HashingProvider } from 'src/common/providers/hashing/hashing.provider';
 
 import { SuperAdminLoginDto } from '../dtos/super-admini-login.dto';
 import { UsersService } from 'src/users/providers/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { HashingProvider } from '../../common/providers/hashing/hashing.provider';
 
 @Injectable()
 export class AuthService {

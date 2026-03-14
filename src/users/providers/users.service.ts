@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../repo/user.repository';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
-import { HashingProvider } from 'src/common/providers/hashing/hashing.provider';
+import { HashingProvider } from '../../common/providers/hashing/hashing.provider';
 
 @Injectable()
 export class UsersService {
