@@ -8,5 +8,6 @@ import { HashingModule } from 'src/common/providers/hashing.module';
   imports: [HashingModule],
   providers: [UsersService, UserRepository],
   controllers: [UsersController],
+  exports: [UsersService],
 })
 export class UsersModule {}

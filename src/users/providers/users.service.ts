@@ -49,4 +49,9 @@ export class UsersService {
       data: new UserResponseDto(user),
     };
   }
+
+  public async findByEmail(email: string) {
+    const user = await this.userRepository.findByEmail(email);
+    return user;
+  }
 }
