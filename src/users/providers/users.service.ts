@@ -2,13 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../repo/user.repository';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
+import { HashingProvider } from 'src/common/providers/hashing/hashing.provider';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly hashingProvider: HashingProvider,
+  ) {}
 
   public async create(createUserDto: CreateUserDto) {
-    const newUser = await this.userRepository.createOne(createUserDto);
+    const hashedPassword = await this.hashingProvider.hash(
+      createUserDto.password,
+    );
+
+    const newUser = await this.userRepository.createOne({
+      ...createUserDto,
+      password: hashedPassword,
+    });
+
     return {
       message: 'User created successfully',
       data: new UserResponseDto(newUser),
@@ -25,10 +37,16 @@ export class UsersService {
 
   public async findById(uid: string) {
     const user = await this.userRepository.findById(uid);
+    if (!user) {
+      return {
+        message: 'User not found',
+        data: null,
+      };
+    }
 
     return {
       message: 'User fetched successfully',
-      data: user ? new UserResponseDto(user) : null,
+      data: new UserResponseDto(user),
     };
   }
 }
