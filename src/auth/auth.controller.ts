@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 // import { ClinicUserLoginDto } from './dtos/clinic-user-login.dto';
 import { SuperAdminLoginDto } from './dtos/super-admini-login.dto';
 import { AuthService } from './providers/auth.service';
-import { Public } from 'src/common/decorators/public.decorator';
+import { Public } from '../common/decorators/public.decorator';
 
 @Controller('auth')
 @Public()
