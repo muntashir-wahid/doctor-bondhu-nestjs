@@ -10,7 +10,8 @@ import { ConfigService } from '@nestjs/config';
 
 import { IS_PUBLIC_KEY, REQUEST_USER_KEY } from '../constants/auth.constants';
 import { Reflector } from '@nestjs/core';
-import { AuthUser } from '../interfaces/auth-user.interface';
+import { VerifiedAuthUser } from '../interfaces/auth-user.interface';
+import { UsersService } from 'src/users/providers/users.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -18,6 +19,7 @@ export class AuthGuard implements CanActivate {
     private jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly reflector: Reflector,
+    private readonly userService: UsersService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -36,15 +38,20 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      const payload: AuthUser = await this.jwtService.verifyAsync<AuthUser>(
-        token,
-        {
+      const payload: VerifiedAuthUser =
+        await this.jwtService.verifyAsync<VerifiedAuthUser>(token, {
           secret: this.configService.get<string>('JWT_SECRET'),
-        },
-      );
+        });
 
-      request[REQUEST_USER_KEY] = payload;
-    } catch {
+      const user = await this.userService.findById(payload.uid);
+
+      if (!user) {
+        throw new UnauthorizedException('User not found');
+      }
+
+      request[REQUEST_USER_KEY] = user.data;
+    } catch (error) {
+      console.error('JWT verification failed:', error);
       throw new UnauthorizedException('Invalid or expired authorization token');
     }
 

@@ -14,7 +14,7 @@ export class AuthController {
 
   @Post('/adminum-login')
   @HttpCode(HttpStatus.OK)
-  adminLogin(@Body() superAdminLoginDto: SuperAdminLoginDto) {
+  public adminLogin(@Body() superAdminLoginDto: SuperAdminLoginDto) {
     return this.authService.superAdminLogin(superAdminLoginDto);
   }
 }

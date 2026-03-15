@@ -14,13 +14,121 @@ datasource db {
   provider = "postgresql"
 }
 
+/**
+ * *****
+ * ENUMS Start
+ * *****
+ */
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+enum Roles {
+  OWNER
+  ADMIN
+  RECEPTIONIST
+  PATIENT
+}
+
+/**
+ * *****
+ * ENUMS End
+ * *****
+ */
+
+/**
+ * *****
+ * Models Start
+ * *****
+ */
+
 model User {
-  uid          String   @id @default(uuid())
-  email        String   @unique
+  uid          String       @id @default(uuid())
+  email        String       @unique
   firstName    String
   lastName     String
   password     String
-  isSuperAdmin Boolean  @default(false)
+  isSuperAdmin Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  clinicUsers  ClinicUser[]
+}
+
+model Clinic {
+  uid          String   @id @default(uuid())
+  name         String   @unique
+  slug         String   @unique
+  address      String?
+  contact      String?
+  email        String?  @unique
+  type         String?
+  clinicBanner String?
+  status       Status   @default(PENDING)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  clinicServices     ClinicService[]
+  clinicFacilities   ClinicFacility[]
+  clinicWorkingHours ClinicWorkingHour[]
+  clinicUsers        ClinicUser[]
 }
+
+model ClinicService {
+  uid         String   @id @default(uuid())
+  name        String
+  description String?
+  status      Status   @default(ACTIVE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  clinicUid String
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+}
+
+model ClinicFacility {
+  uid         String   @id @default(uuid())
+  name        String
+  description String?
+  status      Status   @default(ACTIVE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  clinicUid String
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+}
+
+model ClinicWorkingHour {
+  uid       String   @id @default(uuid())
+  dayOfWeek Int
+  openTime  String
+  closeTime String
+  status    Status   @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clinicUid String
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+}
+
+model ClinicUser {
+  uid       String   @id @default(uuid())
+  role      Roles    @default(PATIENT)
+  status    Status   @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clinicUid String
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+
+  userUid String
+  user    User   @relation(fields: [userUid], references: [uid])
+}
+
+/**
+ * *****
+ * Models End
+ * *****
+ */

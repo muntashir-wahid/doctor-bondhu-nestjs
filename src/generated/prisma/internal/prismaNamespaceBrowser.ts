@@ -51,7 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Clinic: 'Clinic',
+  ClinicService: 'ClinicService',
+  ClinicFacility: 'ClinicFacility',
+  ClinicWorkingHour: 'ClinicWorkingHour',
+  ClinicUser: 'ClinicUser'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -84,6 +89,76 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const ClinicScalarFieldEnum = {
+  uid: 'uid',
+  name: 'name',
+  slug: 'slug',
+  address: 'address',
+  contact: 'contact',
+  email: 'email',
+  type: 'type',
+  clinicBanner: 'clinicBanner',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ClinicScalarFieldEnum = (typeof ClinicScalarFieldEnum)[keyof typeof ClinicScalarFieldEnum]
+
+
+export const ClinicServiceScalarFieldEnum = {
+  uid: 'uid',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clinicUid: 'clinicUid'
+} as const
+
+export type ClinicServiceScalarFieldEnum = (typeof ClinicServiceScalarFieldEnum)[keyof typeof ClinicServiceScalarFieldEnum]
+
+
+export const ClinicFacilityScalarFieldEnum = {
+  uid: 'uid',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clinicUid: 'clinicUid'
+} as const
+
+export type ClinicFacilityScalarFieldEnum = (typeof ClinicFacilityScalarFieldEnum)[keyof typeof ClinicFacilityScalarFieldEnum]
+
+
+export const ClinicWorkingHourScalarFieldEnum = {
+  uid: 'uid',
+  dayOfWeek: 'dayOfWeek',
+  openTime: 'openTime',
+  closeTime: 'closeTime',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clinicUid: 'clinicUid'
+} as const
+
+export type ClinicWorkingHourScalarFieldEnum = (typeof ClinicWorkingHourScalarFieldEnum)[keyof typeof ClinicWorkingHourScalarFieldEnum]
+
+
+export const ClinicUserScalarFieldEnum = {
+  uid: 'uid',
+  role: 'role',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clinicUid: 'clinicUid',
+  userUid: 'userUid'
+} as const
+
+export type ClinicUserScalarFieldEnum = (typeof ClinicUserScalarFieldEnum)[keyof typeof ClinicUserScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -98,4 +173,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
