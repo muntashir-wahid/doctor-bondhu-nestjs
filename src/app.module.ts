@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/guards/roles.guard';
+import { ClinicsModule } from './clinics/clinics.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RolesGuard } from './auth/guards/roles.guard';
     PrismaModule,
     UsersModule,
     AuthModule,
+    ClinicsModule,
   ],
   controllers: [AppController],
   providers: [
