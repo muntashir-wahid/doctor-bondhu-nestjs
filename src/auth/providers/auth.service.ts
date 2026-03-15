@@ -38,8 +38,7 @@ export class AuthService {
     }
 
     const accessToken = await this.jwtService.signAsync({
-      uid: user.uid as string,
-      email: user.email,
+      uid: user.uid,
       isSuperAdmin: user.isSuperAdmin,
     });
 
@@ -48,7 +47,7 @@ export class AuthService {
       data: {
         accessToken,
         user: {
-          uid: user.uid as string,
+          uid: user.uid,
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
