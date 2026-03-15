@@ -10,8 +10,13 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './providers/users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
+import {
+  HasPermission,
+  Role,
+} from '../common/decorators/has-permission.decorator';
 
 @Controller('users')
+@HasPermission(Role.SUPER_ADMIN)
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
