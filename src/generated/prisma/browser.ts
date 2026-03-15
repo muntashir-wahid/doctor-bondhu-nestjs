@@ -22,3 +22,28 @@ export * from './enums.js';
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Clinic
+ * 
+ */
+export type Clinic = Prisma.ClinicModel
+/**
+ * Model ClinicService
+ * 
+ */
+export type ClinicService = Prisma.ClinicServiceModel
+/**
+ * Model ClinicFacility
+ * 
+ */
+export type ClinicFacility = Prisma.ClinicFacilityModel
+/**
+ * Model ClinicWorkingHour
+ * 
+ */
+export type ClinicWorkingHour = Prisma.ClinicWorkingHourModel
+/**
+ * Model ClinicUser
+ * 
+ */
+export type ClinicUser = Prisma.ClinicUserModel
