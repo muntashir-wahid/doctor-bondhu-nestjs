@@ -3,6 +3,7 @@ import { UserRepository } from '../repo/user.repository';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
 import { HashingProvider } from '../../common/providers/hashing/hashing.provider';
+import { Prisma } from '../../generated/prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -53,5 +54,9 @@ export class UsersService {
   public async findByEmail(email: string) {
     const user = await this.userRepository.findByEmail(email);
     return user;
+  }
+
+  public findClinicUser(where: Prisma.ClinicUserWhereInput) {
+    return this.userRepository.findOneBy(where);
   }
 }

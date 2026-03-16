@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-// import { ClinicUserLoginDto } from './dtos/clinic-user-login.dto';
+import { ClinicUserLoginDto } from './dtos/clinic-user-login.dto';
 import { SuperAdminLoginDto } from './dtos/super-admini-login.dto';
 import { AuthService } from './providers/auth.service';
 import { Public } from '../common/decorators/public.decorator';
@@ -9,8 +9,10 @@ import { Public } from '../common/decorators/public.decorator';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // @Post('/login')
-  // login(@Body() clinicUserLoginDto: ClinicUserLoginDto) {}
+  @Post('/login')
+  login(@Body() clinicUserLoginDto: ClinicUserLoginDto) {
+    return this.authService.clinicUserLogin(clinicUserLoginDto);
+  }
 
   @Post('/adminum-login')
   @HttpCode(HttpStatus.OK)
