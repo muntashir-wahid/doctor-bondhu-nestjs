@@ -5,6 +5,8 @@ import {
   HasPermission,
   Role,
 } from '../common/decorators/has-permission.decorator';
+import { Public } from '../common/decorators/public.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
 @Controller('clinics')
 export class ClinicsController {
@@ -15,10 +17,9 @@ export class ClinicsController {
     return this.clinicsService.create(createClinicDto);
   }
 
+  @Public()
   @Get()
-  getClinics() {
-    return {
-      message: 'List of clinics',
-    };
+  getClinics(@CurrentUser('isSuperAdmin') isSuperAdmin: boolean) {
+    return this.clinicsService.findAll({ isSuperAdmin });
   }
 }
