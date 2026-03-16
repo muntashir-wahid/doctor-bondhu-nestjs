@@ -66,6 +66,7 @@ model Clinic {
   email        String?  @unique
   type         String?
   clinicBanner String?
+  website      String?
   status       Status   @default(PENDING)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -85,7 +86,7 @@ model ClinicService {
   updatedAt   DateTime @updatedAt
 
   clinicUid String
-  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid], onDelete: Cascade)
 }
 
 model ClinicFacility {
@@ -97,7 +98,7 @@ model ClinicFacility {
   updatedAt   DateTime @updatedAt
 
   clinicUid String
-  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid], onDelete: Cascade)
 }
 
 model ClinicWorkingHour {
@@ -110,7 +111,7 @@ model ClinicWorkingHour {
   updatedAt DateTime @updatedAt
 
   clinicUid String
-  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid], onDelete: Cascade)
 }
 
 model ClinicUser {
@@ -121,10 +122,10 @@ model ClinicUser {
   updatedAt DateTime @updatedAt
 
   clinicUid String
-  clinic    Clinic @relation(fields: [clinicUid], references: [uid])
+  clinic    Clinic @relation(fields: [clinicUid], references: [uid], onDelete: Cascade)
 
   userUid String
-  user    User   @relation(fields: [userUid], references: [uid])
+  user    User   @relation(fields: [userUid], references: [uid], onDelete: Cascade)
 }
 
 /**

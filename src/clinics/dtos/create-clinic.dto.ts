@@ -96,6 +96,10 @@ export class CreateClinicDto {
   clinicBanner?: string;
 
   @IsOptional()
+  @IsUrl()
+  website?: string;
+
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CreateClinicServiceDto)

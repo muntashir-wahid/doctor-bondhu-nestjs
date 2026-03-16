@@ -98,6 +98,7 @@ export const ClinicScalarFieldEnum = {
   email: 'email',
   type: 'type',
   clinicBanner: 'clinicBanner',
+  website: 'website',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

@@ -1328,6 +1328,11 @@ export type ClinicUserFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Skip the first `n` ClinicUsers.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ClinicUsers.
+   */
   distinct?: Prisma.ClinicUserScalarFieldEnum | Prisma.ClinicUserScalarFieldEnum[]
 }
 
