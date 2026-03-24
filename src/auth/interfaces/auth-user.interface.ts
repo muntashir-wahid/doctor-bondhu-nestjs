@@ -12,8 +12,9 @@ export interface AuthUser {
 export interface VerifiedAuthUser {
   uid: string;
   email: string;
+  firstName: string;
+  lastName: string;
   isSuperAdmin: boolean;
   role?: Roles;
   clinicUid?: string;
-  userUid?: string;
 }

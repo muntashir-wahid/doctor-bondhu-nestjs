@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
 import { CreateClinicDto } from './dtos/create-clinic.dto';
 import { ClinicsService } from './providers/clinics.service';
 import {
@@ -21,5 +21,12 @@ export class ClinicsController {
   @Get()
   getClinics(@CurrentUser('isSuperAdmin') isSuperAdmin: boolean) {
     return this.clinicsService.findAll({ isSuperAdmin });
+  }
+
+  @Patch(':uid')
+  updateClinic() {
+    return {
+      message: 'Update clinic endpoint - to be implemented',
+    };
   }
 }

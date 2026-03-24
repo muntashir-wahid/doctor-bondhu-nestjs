@@ -41,6 +41,9 @@ export class AuthService {
 
     const accessToken = await this.jwtService.signAsync({
       uid: user.uid,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
       isSuperAdmin: user.isSuperAdmin,
     });
 
@@ -62,7 +65,10 @@ export class AuthService {
   public async clinicUserLogin(clinicUserLoginDto: ClinicUserLoginDto) {
     const { email, password, clinicUid, role } = clinicUserLoginDto;
     const user = await this.usersService.findClinicUser({
-      clinicUid,
+      clinic: {
+        uid: clinicUid,
+        status: Status.ACTIVE,
+      },
       role,
       status: Status.ACTIVE,
       user: {
@@ -86,7 +92,9 @@ export class AuthService {
     const accessToken = await this.jwtService.signAsync({
       uid: user.user.uid,
       clinicUid: user.clinicUid,
+      email: user.user.email,
       role: user.role,
+      isSuperAdmin: false,
     });
 
     return {
