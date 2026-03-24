@@ -28,38 +28,72 @@ export class AuthGuard implements CanActivate {
       context.getClass(),
     ]);
 
-    if (isPublic) return true;
-
     const request = context.switchToHttp().getRequest<Request>();
     const token = this.extractTokenFromHeader(request);
+    const clinicUid = this.extractClinicUidFromHeader(request);
 
-    if (!token) {
+    if (isPublic && !token) return true;
+
+    if (!isPublic && !token) {
       throw new UnauthorizedException('Authorization token is missing');
     }
 
-    try {
-      const payload: VerifiedAuthUser =
-        await this.jwtService.verifyAsync<VerifiedAuthUser>(token, {
-          secret: this.configService.get<string>('JWT_SECRET'),
-        });
+    if (isPublic && token) {
+      try {
+        const payload: VerifiedAuthUser =
+          await this.jwtService.verifyAsync<VerifiedAuthUser>(token, {
+            secret: this.configService.get<string>('JWT_SECRET'),
+          });
 
-      const user = await this.userService.findById(payload.uid);
+        const user = await this.userService.findById(payload.uid);
 
-      if (!user) {
-        throw new UnauthorizedException('User not found');
+        if (!user) {
+          throw new UnauthorizedException('User not found');
+        }
+
+        request[REQUEST_USER_KEY] = user.data;
+      } catch (error) {
+        console.error('JWT verification failed:', error);
+        throw new UnauthorizedException(
+          'Invalid or expired authorization token',
+        );
       }
 
-      request[REQUEST_USER_KEY] = user.data;
-    } catch (error) {
-      console.error('JWT verification failed:', error);
-      throw new UnauthorizedException('Invalid or expired authorization token');
+      return true;
     }
 
-    return true;
+    if (!isPublic && token) {
+      try {
+        const payload: VerifiedAuthUser =
+          await this.jwtService.verifyAsync<VerifiedAuthUser>(token, {
+            secret: this.configService.get<string>('JWT_SECRET'),
+          });
+
+        const user = await this.userService.findById(payload.uid);
+
+        if (!user) {
+          throw new UnauthorizedException('User not found');
+        }
+
+        request[REQUEST_USER_KEY] = user.data;
+      } catch (error) {
+        console.error('JWT verification failed:', error);
+        throw new UnauthorizedException(
+          'Invalid or expired authorization token',
+        );
+      }
+
+      return true;
+    }
+
+    return false;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
     return type === 'Bearer' ? token : undefined;
+  }
+  private extractClinicUidFromHeader(request: Request): string | undefined {
+    return request.headers['x-clinic-uid'] as string | undefined;
   }
 }
