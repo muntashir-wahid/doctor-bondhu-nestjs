@@ -22,4 +22,12 @@ export class ClinicsService {
       data: clinics,
     };
   }
+
+  public async findById(id: string) {
+    const clinic = await this.clinicsRepository.findById(id);
+    return {
+      message: 'Clinic fetched successfully',
+      data: clinic ? clinic : null,
+    };
+  }
 }

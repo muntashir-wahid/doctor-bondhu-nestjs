@@ -14,15 +14,11 @@ export class ClinicsRepository {
   public async findAll(queryParams: IFindAllClinicsQueryParams) {
     let whereClause = {};
 
-    console.log('Query Params:', queryParams); // Debug log to check incoming query parameters
-
     if (!queryParams.isSuperAdmin) {
       whereClause = {
         status: Status.ACTIVE,
       };
     }
-
-    console.log('Where Clause:', whereClause); // Debug log to check the constructed where clause
 
     try {
       const clinics = await this.prisma.clinic.findMany({ where: whereClause });
@@ -31,6 +27,25 @@ export class ClinicsRepository {
       this.prismaExceptionsService.handlePrismaError(
         error,
         'Failed to fetch clinics',
+      );
+    }
+  }
+
+  public async findById(id: string) {
+    try {
+      const clinic = await this.prisma.clinic.findUnique({
+        where: { uid: id },
+        include: {
+          clinicFacilities: true,
+          clinicServices: true,
+          clinicWorkingHours: true,
+        },
+      });
+      return clinic;
+    } catch (error) {
+      this.prismaExceptionsService.handlePrismaError(
+        error,
+        'Failed to fetch clinic',
       );
     }
   }

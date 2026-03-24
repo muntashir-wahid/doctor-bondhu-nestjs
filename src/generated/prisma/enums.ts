@@ -22,7 +22,8 @@ export const Roles = {
   OWNER: 'OWNER',
   ADMIN: 'ADMIN',
   RECEPTIONIST: 'RECEPTIONIST',
-  PATIENT: 'PATIENT'
+  PATIENT: 'PATIENT',
+  DOCTOR: 'DOCTOR'
 } as const
 
 export type Roles = (typeof Roles)[keyof typeof Roles]

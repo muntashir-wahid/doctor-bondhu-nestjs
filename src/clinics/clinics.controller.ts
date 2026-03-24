@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateClinicDto } from './dtos/create-clinic.dto';
 import { ClinicsService } from './providers/clinics.service';
 import {
@@ -22,6 +30,12 @@ export class ClinicsController {
   @Get()
   getClinics(@CurrentUser('isSuperAdmin') isSuperAdmin: boolean) {
     return this.clinicsService.findAll({ isSuperAdmin });
+  }
+
+  @Public()
+  @Get(':uid')
+  getClinicById(@Param('uid') uid: string) {
+    return this.clinicsService.findById(uid);
   }
 
   @Patch(':uid')
