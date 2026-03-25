@@ -20,6 +20,7 @@ export class ClinicsController {
   @Public()
   @Get()
   getClinics(@CurrentUser('isSuperAdmin') isSuperAdmin: boolean) {
+    console.log('Received request to get clinics. isSuperAdmin:', isSuperAdmin);
     return this.clinicsService.findAll({ isSuperAdmin });
   }
 
@@ -29,9 +30,16 @@ export class ClinicsController {
     return this.clinicsService.findById(uid);
   }
 
+  @Patch(':uid/status')
+  @HasPermission(Role.SUPER_ADMIN)
+  updateClinicStatus(@Param('uid') uid: string) {
+    return this.clinicsService.toggleStatus(uid);
+  }
+
   @Patch(':uid')
   @HasPermission(Role.SUPER_ADMIN)
-  updateClinic() {
+  updateClinic(@Param('uid') uid: string) {
+    console.log('Updating clinic with UID:', uid);
     return {
       message: 'Update clinic endpoint - to be implemented',
     };

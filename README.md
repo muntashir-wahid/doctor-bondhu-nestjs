@@ -241,7 +241,7 @@ Services depend on **repository interfaces**, not concrete implementations.
 
 Services **never access Prisma directly**.
 
-Instead they depend on repository interfaces.
+Instead, they depend on repository interfaces.
 
 Example:
 

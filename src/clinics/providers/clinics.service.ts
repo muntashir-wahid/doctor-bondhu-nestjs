@@ -3,6 +3,7 @@ import { CreateClinicDto } from '../dtos/create-clinic.dto';
 import { CreateClinicProvider } from './create-clinic.provider';
 import { ClinicsRepository } from '../repo/clinics.repository';
 import { IFindAllClinicsQueryParams } from '../interfaces/query-params.interface';
+import { Status } from '../../generated/prisma/enums';
 
 @Injectable()
 export class ClinicsService {
@@ -28,6 +29,26 @@ export class ClinicsService {
     return {
       message: 'Clinic fetched successfully',
       data: clinic ? clinic : null,
+    };
+  }
+
+  public async toggleStatus(uid: string) {
+    const clinic = await this.clinicsRepository.findById(uid);
+    if (!clinic) {
+      return {
+        message: 'Clinic not found',
+      };
+    }
+    const newStatus =
+      clinic.status === Status.ACTIVE ? Status.PENDING : Status.ACTIVE;
+
+    const updatedClinic = await this.clinicsRepository.updateById(uid, {
+      status: newStatus,
+    });
+
+    return {
+      message: `Clinic status updated to ${newStatus}`,
+      data: updatedClinic,
     };
   }
 }
