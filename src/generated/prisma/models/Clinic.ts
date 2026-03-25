@@ -33,6 +33,7 @@ export type ClinicMinAggregateOutputType = {
   email: string | null
   type: string | null
   clinicBanner: string | null
+  website: string | null
   status: $Enums.Status | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -47,6 +48,7 @@ export type ClinicMaxAggregateOutputType = {
   email: string | null
   type: string | null
   clinicBanner: string | null
+  website: string | null
   status: $Enums.Status | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -61,6 +63,7 @@ export type ClinicCountAggregateOutputType = {
   email: number
   type: number
   clinicBanner: number
+  website: number
   status: number
   createdAt: number
   updatedAt: number
@@ -77,6 +80,7 @@ export type ClinicMinAggregateInputType = {
   email?: true
   type?: true
   clinicBanner?: true
+  website?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -91,6 +95,7 @@ export type ClinicMaxAggregateInputType = {
   email?: true
   type?: true
   clinicBanner?: true
+  website?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -105,6 +110,7 @@ export type ClinicCountAggregateInputType = {
   email?: true
   type?: true
   clinicBanner?: true
+  website?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -192,6 +198,7 @@ export type ClinicGroupByOutputType = {
   email: string | null
   type: string | null
   clinicBanner: string | null
+  website: string | null
   status: $Enums.Status
   createdAt: Date
   updatedAt: Date
@@ -227,6 +234,7 @@ export type ClinicWhereInput = {
   email?: Prisma.StringNullableFilter<"Clinic"> | string | null
   type?: Prisma.StringNullableFilter<"Clinic"> | string | null
   clinicBanner?: Prisma.StringNullableFilter<"Clinic"> | string | null
+  website?: Prisma.StringNullableFilter<"Clinic"> | string | null
   status?: Prisma.EnumStatusFilter<"Clinic"> | $Enums.Status
   createdAt?: Prisma.DateTimeFilter<"Clinic"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Clinic"> | Date | string
@@ -245,6 +253,7 @@ export type ClinicOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   clinicBanner?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -266,6 +275,7 @@ export type ClinicWhereUniqueInput = Prisma.AtLeast<{
   contact?: Prisma.StringNullableFilter<"Clinic"> | string | null
   type?: Prisma.StringNullableFilter<"Clinic"> | string | null
   clinicBanner?: Prisma.StringNullableFilter<"Clinic"> | string | null
+  website?: Prisma.StringNullableFilter<"Clinic"> | string | null
   status?: Prisma.EnumStatusFilter<"Clinic"> | $Enums.Status
   createdAt?: Prisma.DateTimeFilter<"Clinic"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Clinic"> | Date | string
@@ -284,6 +294,7 @@ export type ClinicOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   clinicBanner?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -304,6 +315,7 @@ export type ClinicScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"Clinic"> | string | null
   type?: Prisma.StringNullableWithAggregatesFilter<"Clinic"> | string | null
   clinicBanner?: Prisma.StringNullableWithAggregatesFilter<"Clinic"> | string | null
+  website?: Prisma.StringNullableWithAggregatesFilter<"Clinic"> | string | null
   status?: Prisma.EnumStatusWithAggregatesFilter<"Clinic"> | $Enums.Status
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Clinic"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Clinic"> | Date | string
@@ -318,6 +330,7 @@ export type ClinicCreateInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -336,6 +349,7 @@ export type ClinicUncheckedCreateInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -354,6 +368,7 @@ export type ClinicUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -372,6 +387,7 @@ export type ClinicUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -390,6 +406,7 @@ export type ClinicCreateManyInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -404,6 +421,7 @@ export type ClinicUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -418,6 +436,7 @@ export type ClinicUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -432,6 +451,7 @@ export type ClinicCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   type?: Prisma.SortOrder
   clinicBanner?: Prisma.SortOrder
+  website?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -446,6 +466,7 @@ export type ClinicMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   type?: Prisma.SortOrder
   clinicBanner?: Prisma.SortOrder
+  website?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -460,6 +481,7 @@ export type ClinicMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   type?: Prisma.SortOrder
   clinicBanner?: Prisma.SortOrder
+  website?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -543,6 +565,7 @@ export type ClinicCreateWithoutClinicServicesInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -560,6 +583,7 @@ export type ClinicUncheckedCreateWithoutClinicServicesInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -593,6 +617,7 @@ export type ClinicUpdateWithoutClinicServicesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -610,6 +635,7 @@ export type ClinicUncheckedUpdateWithoutClinicServicesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -627,6 +653,7 @@ export type ClinicCreateWithoutClinicFacilitiesInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -644,6 +671,7 @@ export type ClinicUncheckedCreateWithoutClinicFacilitiesInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -677,6 +705,7 @@ export type ClinicUpdateWithoutClinicFacilitiesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -694,6 +723,7 @@ export type ClinicUncheckedUpdateWithoutClinicFacilitiesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -711,6 +741,7 @@ export type ClinicCreateWithoutClinicWorkingHoursInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -728,6 +759,7 @@ export type ClinicUncheckedCreateWithoutClinicWorkingHoursInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -761,6 +793,7 @@ export type ClinicUpdateWithoutClinicWorkingHoursInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -778,6 +811,7 @@ export type ClinicUncheckedUpdateWithoutClinicWorkingHoursInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -795,6 +829,7 @@ export type ClinicCreateWithoutClinicUsersInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -812,6 +847,7 @@ export type ClinicUncheckedCreateWithoutClinicUsersInput = {
   email?: string | null
   type?: string | null
   clinicBanner?: string | null
+  website?: string | null
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -845,6 +881,7 @@ export type ClinicUpdateWithoutClinicUsersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -862,6 +899,7 @@ export type ClinicUncheckedUpdateWithoutClinicUsersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicBanner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -937,6 +975,7 @@ export type ClinicSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   email?: boolean
   type?: boolean
   clinicBanner?: boolean
+  website?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -956,6 +995,7 @@ export type ClinicSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   email?: boolean
   type?: boolean
   clinicBanner?: boolean
+  website?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -970,6 +1010,7 @@ export type ClinicSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   email?: boolean
   type?: boolean
   clinicBanner?: boolean
+  website?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -984,12 +1025,13 @@ export type ClinicSelectScalar = {
   email?: boolean
   type?: boolean
   clinicBanner?: boolean
+  website?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ClinicOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"uid" | "name" | "slug" | "address" | "contact" | "email" | "type" | "clinicBanner" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["clinic"]>
+export type ClinicOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"uid" | "name" | "slug" | "address" | "contact" | "email" | "type" | "clinicBanner" | "website" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["clinic"]>
 export type ClinicInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   clinicServices?: boolean | Prisma.Clinic$clinicServicesArgs<ExtArgs>
   clinicFacilities?: boolean | Prisma.Clinic$clinicFacilitiesArgs<ExtArgs>
@@ -1017,6 +1059,7 @@ export type $ClinicPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     email: string | null
     type: string | null
     clinicBanner: string | null
+    website: string | null
     status: $Enums.Status
     createdAt: Date
     updatedAt: Date
@@ -1455,6 +1498,7 @@ export interface ClinicFieldRefs {
   readonly email: Prisma.FieldRef<"Clinic", 'String'>
   readonly type: Prisma.FieldRef<"Clinic", 'String'>
   readonly clinicBanner: Prisma.FieldRef<"Clinic", 'String'>
+  readonly website: Prisma.FieldRef<"Clinic", 'String'>
   readonly status: Prisma.FieldRef<"Clinic", 'Status'>
   readonly createdAt: Prisma.FieldRef<"Clinic", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Clinic", 'DateTime'>
@@ -1654,6 +1698,11 @@ export type ClinicFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Skip the first `n` Clinics.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Clinics.
+   */
   distinct?: Prisma.ClinicScalarFieldEnum | Prisma.ClinicScalarFieldEnum[]
 }
 

@@ -1192,6 +1192,11 @@ export type ClinicFacilityFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Skip the first `n` ClinicFacilities.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ClinicFacilities.
+   */
   distinct?: Prisma.ClinicFacilityScalarFieldEnum | Prisma.ClinicFacilityScalarFieldEnum[]
 }
 

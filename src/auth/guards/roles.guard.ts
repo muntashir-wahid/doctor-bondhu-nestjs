@@ -1,7 +1,7 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Role } from '../../common/decorators/has-permission.decorator';
-import { ROLES_KEY } from '../constants/auth.constants';
+import { REQUEST_USER_KEY, ROLES_KEY } from '../constants/auth.constants';
 import { Request } from 'express';
 import { VerifiedAuthUser } from '../interfaces/auth-user.interface';
 
@@ -20,7 +20,9 @@ export class RolesGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest<Request>();
-    const user: VerifiedAuthUser = request['user'] as VerifiedAuthUser;
+    const user: VerifiedAuthUser = request[
+      REQUEST_USER_KEY
+    ] as VerifiedAuthUser;
 
     if (!user) {
       return false;

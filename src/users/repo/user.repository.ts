@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaExceptionsService } from 'src/prisma/providers/prisma-exceptions.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
@@ -70,6 +71,23 @@ export class UserRepository {
       this.prismaExceptionsService.handlePrismaError(
         error,
         'Failed to fetch user by email',
+      );
+    }
+  }
+
+  public async findOneBy(where: Prisma.ClinicUserWhereInput) {
+    try {
+      const clinicUser = await this.prisma.clinicUser.findFirst({
+        where,
+        include: {
+          user: true,
+        },
+      });
+      return clinicUser;
+    } catch (error) {
+      this.prismaExceptionsService.handlePrismaError(
+        error,
+        'Failed to fetch clinic user',
       );
     }
   }

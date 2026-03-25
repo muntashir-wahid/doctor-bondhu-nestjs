@@ -4,10 +4,8 @@ import { HashingProvider } from './hashing.provider';
 
 @Injectable()
 export class BcryptProvider extends HashingProvider {
-  private readonly saltRounds = 10;
-
   async hash(data: string): Promise<string> {
-    const salt = await bcrypt.genSalt(this.saltRounds);
+    const salt = await bcrypt.genSalt();
     return bcrypt.hash(data, salt);
   }
 
