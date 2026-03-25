@@ -6,7 +6,7 @@ import {
   Role,
 } from '../common/decorators/has-permission.decorator';
 import { Public } from '../common/decorators/public.decorator';
-import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
 
 @Controller('clinics')
 export class ClinicsController {
