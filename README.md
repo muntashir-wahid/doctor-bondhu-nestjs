@@ -1,4 +1,4 @@
-# ClinicOS Backend
+# DoctorBondhu Backend
 
 A **multi-tenant SaaS clinic management backend** built with **NestJS**, **Prisma**, and **PostgreSQL**.
 
