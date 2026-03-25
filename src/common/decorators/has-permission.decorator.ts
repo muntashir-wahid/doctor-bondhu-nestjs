@@ -3,6 +3,7 @@ import { ROLES_KEY } from '../../auth/constants/auth.constants';
 
 export enum Role {
   SUPER_ADMIN = 'super_admin',
+  OWNER = 'owner',
   ADMIN = 'admin',
   DOCTOR = 'doctor',
   RECEPTIONIST = 'receptionist',
