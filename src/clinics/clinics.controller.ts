@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Patch,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateClinicDto } from './dtos/create-clinic.dto';
 import { ClinicsService } from './providers/clinics.service';
 import {
@@ -15,7 +7,6 @@ import {
 } from '../common/decorators/has-permission.decorator';
 import { Public } from '../common/decorators/public.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import { ClinicContextGuard } from 'src/auth/guards/clinic-context.guard';
 
 @Controller('clinics')
 export class ClinicsController {
@@ -39,8 +30,7 @@ export class ClinicsController {
   }
 
   @Patch(':uid')
-  @HasPermission(Role.ADMIN)
-  @UseGuards(ClinicContextGuard)
+  @HasPermission(Role.SUPER_ADMIN)
   updateClinic() {
     return {
       message: 'Update clinic endpoint - to be implemented',
