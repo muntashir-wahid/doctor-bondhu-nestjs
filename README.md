@@ -34,7 +34,7 @@ This project follows **clean layered architecture** and **SOLID principles** to 
 ### Authentication
 
 - JWT Authentication
-- Role Based Access Control (RBAC)
+- Role-Based Access Control (RBAC)
 
 ### Architecture
 
